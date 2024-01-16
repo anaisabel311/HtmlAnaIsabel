@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <style>
+        #word-container {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #guesses-container {
+            margin-bottom: 20px;
+        }
+
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+
+        #result.loss {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Ahorcado</h1>
+
+    <div id="word-container"></div>
+    <div id="guesses-container">Letras incorrectas: <span id="wrong-guesses"></span></div>
+    <div id="result"></div>
+
+    <script>
+        // Lista de palabras para el juego
+        const words = ["javascript", "html", "css", "programming", "web"];
+
+        // Seleccionar una palabra aleatoria
+        const selectedWord = words[Math.floor(Math.random() * words.length)];
+
+        // Inicializar el estado del juego
+        let guessedWord = Array(selectedWord.length).fill('_');
+        let wrongGuesses = [];
+
+        // Función para actualizar la interfaz del juego
+        function updateGame() {
+            document.getElementById('word-container').textContent = guessedWord.join(' ');
+            document.getElementById('wrong-guesses').textContent = wrongGuesses.join(', ');
+
+            // Verificar si el jugador ha ganado
+            if (!guessedWord.includes('_')) {
+                document.getElementById('result').textContent = '¡Ganaste!';
+                document.getElementById('result').classList.remove('loss');
+            }
+
+            // Verificar si el jugador ha perdido
+            if (wrongGuesses.length >= 6) {
+                document.getElementById('result').textContent = '¡Perdiste! La palabra era: ' + selectedWord;
+                document.getElementById('result').classList.add('loss');
+            }
+        }
+
+        // Función para manejar las conjeturas del jugador
+        function makeGuess(letter) {
+            if (selectedWord.includes(letter)) {
+                // La letra está en la palabra
+                for (let i = 0; i < selectedWord.length; i++) {
+                    if (selectedWord[i] === letter) {
+                        guessedWord[i] = letter;
+                    }
+                }
+            } else {
+                // La letra no está en la palabra
+                wrongGuesses.push(letter);
+            }
+
+            // Actualizar la interfaz del juego
+            updateGame();
+        }
+
+        // Inicializar el juego
+        updateGame();
+
+        // Event listener para las teclas presionadas
+        document.addEventListener('keydown', function (event) {
+            const letter = event.key.toLowerCase();
+
+            // Verificar si la tecla presionada es una letra y no ha sido adivinada antes
+            if (/^[a-z]$/.test(letter) && (guessedWord.includes('_') || !wrongGuesses.includes(letter))) {
+                makeGuess(letter);
+            }
+        });
+    </script>
+</body>
+</html>

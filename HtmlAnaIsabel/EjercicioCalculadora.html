@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .calculator {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            width: 48%;
+            padding: 10px;
+            margin: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <label for="numero">Número</label>
+        <input type="text" id="numero" oninput="IntroduceNumero()">
+        <br>
+        <label for="resultado">Resultado</label>
+        <input type="text" id="resultado" readonly>
+        <br>
+        <input type="button" value="+" onclick="appendToDisplay('+')">
+        <input type="button" value="-" onclick="appendToDisplay('-')">
+        <input type="button" value="/" onclick="appendToDisplay('/')">
+        <input type="button" value="*" onclick="appendToDisplay('*')">
+        <br>
+        <input type="button" value="Resultado" onclick="calculadora()">
+    </div>
+
+    <script>
+       // var numeroActual = "";  // Variable para almacenar el número actual
+        let numeroActual=""; // let, puedes acceder a la variable en cualquier función, es globar, si la declaras como var, no la puedes utilizar en distintas funciones.
+        // var te deja declarar 2 variables distintas con el mismo nombre, con Let, no te deja!.
+        alert("numeraActual"+ numeroActual)
+        
+        function IntroduceNumero() {
+            // Actualizar la variable cuando se ingresa un número
+            numeroActual = document.getElementById('numero').value;
+           // alert("numeraActual"+ numeroActual)
+           // cajaNumero = document.getElementById('numero')
+           // numeroActual=cajaNumero.value
+            alert("numeraActual"+ numeroActual)
+           // cajaNumero.value=""
+
+
+         //   document.getElementById('numero').value = "";
+        }
+
+        function appendToDisplay(value) {
+            document.getElementById('numero').value += value;
+         //  alert("numero guardado"+ numeroActual)
+          // document.getElementById('numero').value = "";
+            alert("numero guardado"+ numeroActual)
+        }
+
+        function calculadora() {
+            var expression = document.getElementById('numero').value;
+            alert("calculadora")
+            try {
+                var result = eval(expression);
+                document.getElementById('resultado').value = result;
+            } catch (error) {
+                document.getElementById('resultado').value = 'Error';
+            }
+
+            // Limpiar el campo de entrada y restablecer la variable
+            document.getElementById('numero').value = "";
+            numeroActual = "";
+        }
+    </script>
+</body>
+</html>
