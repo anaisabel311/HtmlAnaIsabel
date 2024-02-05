@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MúsicayRecetas</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href="estilos.css">
+    <script type="text/javascript">
+        function loadPage(page) {
+            alert("Ha pulsado la página: " + page);
+            document.getElementById("cuerpoPagina").innerHTML = '<object type="text/html" width="95%" data="' + page + '"></object>';
+        }
+
+        function closeSesion(){
+            alert ("ADIÓS");
+            loadPage(cerrar_sesion.html);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="contenedor">
+
+        <div id="cabecera">
+            <h1 style="text-align:center">YO, diseño de HTML/CSS fluido</h1>
+            
+
+        </div>
+
+        <div id="columnas">
+            <div id="menu">
+                <!--primero realizamos la columna de la izda con los enlaces. -->
+                <ul>
+                    <li onclick="loadPage('recetas.html');"><a href="#">Recetas</a></li>
+                    <li onclick="loadPage('GrupodeMusica.html');"><a href="#">Grupo de Música</a></li>
+
+                </ul>
+            </div>
+
+            <div id="cuerpoPagina">
+                <!--segundo realizamos la parte del cuerpo que carga con los enlaces. -->
+                <h1>MADRE MIA</h1>
+                <P>He puesto la etiqueta de párrafo en mayúsculas, para saber si html discrimina estas minucias y sigue
+                    funcionando.</P>
+            </div>
+        </div>
+
+        <div id="pie">
+            <p>©<a href="https://cftic.centrosdeformacion.empleo.madrid.org/" target="_blank">CFTIC Getafe</a> 2024</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

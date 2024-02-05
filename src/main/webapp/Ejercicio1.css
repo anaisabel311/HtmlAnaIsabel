@@ -1,0 +1,12 @@
+p {
+    font-size: 100px;
+    color: blue;
+    text-align: center;
+}
+
+.p1{
+    font: size 100px; 
+    background-color:silver ;
+    color: blue;
+    text-align: center;
+}

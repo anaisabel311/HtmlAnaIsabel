@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Attribute Example</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Agregamos datos personalizados utilizando data-* attributes
+
+
+            // Manejamos el evento click para los elementos de la lista
+            $("li").click(function() {
+                // Recuperamos el precio almacenado en el data-* attribute
+                var precio = $(this).data("precio");
+                alert("Precio: $" + precio);
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <ul>
+        <!-- Utilizamos data-* attributes para almacenar información adicional -->
+        <li id="item1" data-precio="20">Item 1</li>
+        <li id="item2" data-precio="30">Item 2</li>
+        <li id="item3" data-precio="40">Item 3</li>
+    </ul>
+
+</body>
+</html>
