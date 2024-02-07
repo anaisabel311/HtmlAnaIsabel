@@ -40,13 +40,27 @@
   	<display-name>HolaServlet</display-name>
   	<description></description>
   	<servlet-class>servlets.HolaServlet</servlet-class>
-  	
+ 
+   	
   	<init-param>
   		<param-name>nombre</param-name>
   		<param-value>Alvaro</param-value>
   		<description></description>
   	</init-param>
   	
+  	<init-param>
+  		<param-name>subtitulo</param-name>
+  		<param-value>Listado Mobiliario</param-value>
+  		<description></description>
+  	</init-param>
+  	
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>MobiliarioServlet</servlet-name>
+  	<display-name>MobiliarioServlet</display-name>
+  	<description></description>
+  	<servlet-class>servlets.MobiliarioServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -73,10 +87,18 @@
   	<servlet-name>FS</servlet-name>
   	<url-pattern>/formulariotest</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>HolaServlet</servlet-name>
   	<url-pattern>/HolaServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>MobiliarioServlet</servlet-name>
+  	<url-pattern>/MobiliarioServlet</url-pattern>
+  </servlet-mapping>
+  
+  
   
   
   
