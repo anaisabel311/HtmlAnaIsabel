@@ -32,10 +32,7 @@
 
 	<h1><%=mapa.get("subtitulo") %></h1>
 	
-<% for (Mobiliario mueble : muebles){}
 
-
-%>	
 				
 		<tr>
 			<th>TIPO MOBILIARIO</th>
@@ -47,40 +44,50 @@
 						
 		</tr>
 		
-<form action="MobiliarioServlet" method="post">		
 
 
 <% for (Mobiliario mueble:muebles) {
 		
 	if(mueble instanceof Mesa) {     
 	  Mesa mesa1 =(Mesa)mueble;%> <!-- castear -->
-	  <td><%=""%></td>
+	  <tr>
+	  <td>Mesa</td>
 	  <td><%=mesa1.getNombre()%></td>
 	  <td><%=mesa1.getPrecio()%></td>
 	  <td><%=mesa1.getEstilo()%></td>
 	  <td></td>
 	  <td></td>
+	  </tr>
 	
 	<%}else{ if (mueble instanceof Sofa){
 			Sofa sofa1 =(Sofa)mueble;%>  <!-- castear -->
+			<tr>
+			<td>Sofa</td>
 			<td><%=sofa1.getNombre()%></td>
 			<td><%=sofa1.getPrecio()%></td>
 			<td></td>
 			<td><%=sofa1.getColor()%></td>
 			<td></td>
+			</tr>
 		<%} else {
 			if(mueble instanceof Lampara) {
 				Lampara lamp1 =(Lampara)mueble;%><!-- castear -->
+					<tr>
+					<td>Lámpara</td>
 					<td><%=lamp1.getNombre()%></td>
 					<td><%=lamp1.getPrecio()%></td>
 					<td></td>
 					<td></td>
 					<td><%=lamp1.getPotencia()%></td>
+					</tr>
 			<%} %>
 		<%} %>		
 	<%} %>		
 <%} %>
+</table>
+<br><br> <a href="http://localhost:8082/ProyectoWeb/jsp/FormMobiliario.jsp"><input id="Alta_Mobiliario" type="submit" value="AltaMobiliario" ></input></a>
 
-</form>
+
+
 </body>
 </html>

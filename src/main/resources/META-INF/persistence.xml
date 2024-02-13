@@ -6,6 +6,8 @@
         
         
         
+        
+        
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/curso?serverTimezone=Europe/Madrid"/>
@@ -18,9 +20,15 @@
         </properties>
     </persistence-unit>
     
-     <persistence-unit name="hibernateOracle" transaction-type="RESOURCE_LOCAL">
+     <persistence-unit name="hibernateOracl" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- entidades o entities -->
+        
+        <class>servlets.Lampara</class>
+        <class>servlets.Sofa</class>
+        <class>servlets.Mobiliario</class>
+        <class>servlets.Mesa</class>
+        
         
         
         <exclude-unlisted-classes>true</exclude-unlisted-classes>

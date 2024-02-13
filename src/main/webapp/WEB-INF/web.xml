@@ -48,11 +48,7 @@
   		<description></description>
   	</init-param>
   	
-  	<init-param>
-  		<param-name>subtitulo</param-name>
-  		<param-value>Listado Mobiliario</param-value>
-  		<description></description>
-  	</init-param>
+  	
   	
   </servlet>
   
@@ -61,6 +57,12 @@
   	<display-name>MobiliarioServlet</display-name>
   	<description></description>
   	<servlet-class>servlets.MobiliarioServlet</servlet-class>
+  	
+  	<init-param>
+  		<param-name>subtitle</param-name>
+  		<param-value>Listado Mobiliario</param-value>
+  		<description></description>
+  	</init-param>
   </servlet>
   
   <servlet-mapping>

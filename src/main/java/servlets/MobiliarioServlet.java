@@ -1,19 +1,19 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import daos.MobiliarioDAO;
+import servlets.Mobiliario;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+
+
 
 /**
  * Servlet implementation class MobiliarioServlet
@@ -21,10 +21,14 @@ import jakarta.servlet.http.HttpSession;
 public class MobiliarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private List<Mobiliario> muebles = new ArrayList<Mobiliario>();
+	//private List<Mobiliario> muebles = new ArrayList<Mobiliario>();
 	private String subtitulo;
-       
-    /**
+
+	
+	
+	
+   
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public MobiliarioServlet() {
@@ -54,33 +58,42 @@ public class MobiliarioServlet extends HttpServlet {
 		String color = request.getParameter("colorSofa");
 		String potencia = request.getParameter("potenciaLampara");
 		
+		
+		
+// CREO UN OBJETO TIPO DAO
+		MobiliarioDAO mdao = new MobiliarioDAO();
+		Mobiliario mueble = null; // creo una variable tipo Mobiliario para guardar el mueble que corresponda.
 		if (tipo.equalsIgnoreCase("mesa")) {
-			Mobiliario mesa = new Mesa (nombre, precio, estilo);
-			muebles.add(mesa);
+			mueble = new Mesa (nombre, precio, estilo);
+			//muebles.add(mesa);
 		}else {
 			if (tipo.equalsIgnoreCase("sofa")) {
-				Mobiliario sofa = new Sofa (nombre, precio, color);
-				muebles.add(sofa);
+				mueble = new Sofa (nombre, precio, color);
+				//muebles.add(sofa);
 			} else {				
-				Mobiliario lampara = new Lampara (nombre, precio, potencia);
-				muebles.add(lampara);
+				mueble = new Lampara (nombre, precio, potencia);
+				//muebles.add(lampara);
 			}
 		}
+// hacemos la inserccón en la bbdd
+		
+		mdao.insert(mueble);
 		
 		// lo guardamos en un mapa. Como hay distintos tipos de objetos, invocamos a la clase object.
 		//y la clave será un String.
+		
 		Map<String,Object> datos = new HashMap<String,Object>();
 		datos.put("subtitulo", subtitulo);
-		datos.put("listadoMuebles", muebles);
+		datos.put("listadoMuebles", mueble);
 	
-		System.out.println(muebles.size());
+		System.out.println(datos.size());
 		//request.setAttribute("titulo", subtitulo);
 		//request.setAttribute("listadoMuebles", muebles);
 		
 		//mandamos el mapa desde el servlet
 		request.setAttribute("mapa", datos);
-		RequestDispatcher rd=request.getRequestDispatcher("jsp/TablaMuebles.jsp");
 		
+		RequestDispatcher rd=request.getRequestDispatcher("jsp/TablaMuebles.jsp");
 		rd.forward(request, response);	
 		
 		
@@ -90,7 +103,7 @@ public class MobiliarioServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 
-		subtitulo=config.getInitParameter(subtitulo);
+		subtitulo=config.getInitParameter("subtitle");
 		System.out.println("Entrando init con subtitulo "+ subtitulo );
 		super.init(config);
 	}
