@@ -1,97 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahorcado</title>
-    <style>
-        #word-container {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        #guesses-container {
-            margin-bottom: 20px;
-        }
-
-        #result {
-            font-size: 18px;
-            font-weight: bold;
-            color: green;
-        }
-
-        #result.loss {
-            color: red;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-y12En5bDWzHzMQ4jX9WPw9a+5pMQXBD6Z26AU7FPUl2xuO+F4EXh27Cuk1J1uBSZ" crossorigin="anonymous">
+  <title>Calculadora</title>
 </head>
 <body>
-    <h1>Juego de Ahorcado</h1>
 
-    <div id="word-container"></div>
-    <div id="guesses-container">Letras incorrectas: <span id="wrong-guesses"></span></div>
-    <div id="result"></div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <input type="text" class="form-control mb-2" id="display" readonly>
+          <div class="row">
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('7')">7</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('8')">8</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('9')">9</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-warning btn-block" onclick="appendToDisplay('/')">/</button>
+            </div>
+          </div>
+          <!-- Agrega más filas y botones según sea necesario -->
+          <div class="row mt-2">
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('4')">4</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('5')">5</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('6')">6</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-warning btn-block" onclick="appendToDisplay('*')">*</button>
+            </div>
+          </div>
+          <!-- Más filas y botones -->
+          <div class="row mt-2">
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('1')">1</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('2')">2</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('3')">3</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-warning btn-block" onclick="appendToDisplay('-')">-</button>
+            </div>
+          </div>
+          <!-- Última fila -->
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <button class="btn btn-secondary btn-block" onclick="appendToDisplay('0')">0</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-warning btn-block" onclick="appendToDisplay('+')">+</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-success btn-block" onclick="calculate()">=</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        // Lista de palabras para el juego
-        const words = ["javascript", "html", "css", "programming", "web"];
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ez7+4P1QGhrw2qZ6e3/8JQgzUxyqIp5LylFshyntQ3Aaop5zb32rQoScgV/kZ8Vn" crossorigin="anonymous"></script>
 
-        // Seleccionar una palabra aleatoria
-        const selectedWord = words[Math.floor(Math.random() * words.length)];
+<script>
+  function appendToDisplay(value) {
+    document.getElementById('display').value += value;
+  }
 
-        // Inicializar el estado del juego
-        let guessedWord = Array(selectedWord.length).fill('_');
-        let wrongGuesses = [];
+  function calculate() {
+    try {
+      document.getElementById('display').value = eval(document.getElementById('display').value);
+    } catch (error) {
+      document.getElementById('display').value = 'Error';
+    }
+  }
+</script>
 
-        // Función para actualizar la interfaz del juego
-        function updateGame() {
-            document.getElementById('word-container').textContent = guessedWord.join(' ');
-            document.getElementById('wrong-guesses').textContent = wrongGuesses.join(', ');
-
-            // Verificar si el jugador ha ganado
-            if (!guessedWord.includes('_')) {
-                document.getElementById('result').textContent = '¡Ganaste!';
-                document.getElementById('result').classList.remove('loss');
-            }
-
-            // Verificar si el jugador ha perdido
-            if (wrongGuesses.length >= 6) {
-                document.getElementById('result').textContent = '¡Perdiste! La palabra era: ' + selectedWord;
-                document.getElementById('result').classList.add('loss');
-            }
-        }
-
-        // Función para manejar las conjeturas del jugador
-        function makeGuess(letter) {
-            if (selectedWord.includes(letter)) {
-                // La letra está en la palabra
-                for (let i = 0; i < selectedWord.length; i++) {
-                    if (selectedWord[i] === letter) {
-                        guessedWord[i] = letter;
-                    }
-                }
-            } else {
-                // La letra no está en la palabra
-                wrongGuesses.push(letter);
-            }
-
-            // Actualizar la interfaz del juego
-            updateGame();
-        }
-
-        // Inicializar el juego
-        updateGame();
-
-        // Event listener para las teclas presionadas
-        document.addEventListener('keydown', function (event) {
-            const letter = event.key.toLowerCase();
-
-            // Verificar si la tecla presionada es una letra y no ha sido adivinada antes
-            if (/^[a-z]$/.test(letter) && (guessedWord.includes('_') || !wrongGuesses.includes(letter))) {
-                makeGuess(letter);
-            }
-        });
-    </script>
 </body>
 </html>
 

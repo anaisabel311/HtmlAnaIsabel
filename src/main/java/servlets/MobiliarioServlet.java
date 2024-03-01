@@ -2,10 +2,10 @@ package servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import daos.MobiliarioDAO;
-import servlets.Mobiliario;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -78,15 +78,17 @@ public class MobiliarioServlet extends HttpServlet {
 // hacemos la inserccón en la bbdd
 		
 		mdao.insert(mueble);
-		
+		//aca listamos todos los muebles.
+		List<Mobiliario> muebles = mdao.get();
+		 
 		// lo guardamos en un mapa. Como hay distintos tipos de objetos, invocamos a la clase object.
 		//y la clave será un String.
 		
 		Map<String,Object> datos = new HashMap<String,Object>();
 		datos.put("subtitulo", subtitulo);
-		datos.put("listadoMuebles", mueble);
+		datos.put("listadoMuebles", muebles);
 	
-		System.out.println(datos.size());
+		//System.out.println(datos.size());
 		//request.setAttribute("titulo", subtitulo);
 		//request.setAttribute("listadoMuebles", muebles);
 		

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Calculadora BootStrap</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	
+	
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row aling-items-center bg-dark">
+			<div class="col-12 col-md-6">
+				<h1 class="text-warning">CALCULADORA BOOTSTRAP </h1>
+			</div>	
+				<div class="col-12 col-md-6">
+					<img class="img-fluid img-thumbnail"src="./7.BootStrap/1.elementos_img_table_fuentes/img/bg5.jpg" alt="">
+				</div>
+			
+		</div>
+	</div>
+
+<!--Pantalla y boton reset-->
+
+	
+	<hr>
+	<div class ="row justify-content-center mt-3">
+		<div class="col-12 col-md-9"></div>
+	<input type="text" class="form-control mb-2" id="display" readonly>
+	</div>
+	<div class="col-3 col-md-3"></div>
+	<input type="button" id="botonReset" class="btn btn-success" value="Reset">
+	<hr>
+	
+<!--botonera numérica-->
+	<div row="justify-content-center">
+	<div class="col-12 col-md-6 col-lg-3 d-flex gap-5 justify-content-center mt-3">
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('1')">1</button><br><br>
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('2')">2</button><br><br>
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('3')">3</button><br><br>
+	</div>	
+	
+	<div class="col-12 col-md-6 col-lg-3 d-flex gap-5 justify-content-center mt-3">
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('4')">4</button><br><br>
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('5')">5</button><br><br>
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('6')">6</button><br><br>
+	</div>
+	<div class="col-12 col-md-6 col-lg-3 d-flex gap-5 justify-content-center mt-3">	
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('7')">7</button><br><br>
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('8')">8</button><br><br>
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('9')">9</button><br><br>
+	</div>	
+	<div class="col-12 col-md-6 col-lg-3 d-flex gap-5 justify-content-center mt-3">
+		<button class="btn btn-secondary btn-block" onclick="appendToDisplay('0')">0</button><br><br>
+	</div>
+
+	</div>
+	</div>
+	
+	<hr>
+<!--PIE DE PÁGINA	-->
+	<div class="col-12 justify-content-center">
+
+		<figcaption class="blockquote-footer" "bg-dark" "text-center">
+			<cite>FIN DE CALCULADORA</cite>
+		</figcaption>
+
+	</div>
+
+
+
+
+</body>
+
+</html>
